@@ -8,9 +8,8 @@
  * Controller of the zelloApp
  */
 angular.module('zelloApp')
-  .controller('SellingsCtrl', function ($scope, ApiService) {
+  .controller('SellingsCtrl', function ($scope, SellingService) {
     $scope.sellings = [];
-    $scope.currentSelling;
 
     $scope.getTotal = function() {
         var total = 0;
@@ -20,20 +19,24 @@ angular.module('zelloApp')
         }
         return total;
     };
+
     $scope.getSellings = function() {
-      ApiService.sellings().query().$promise.then(function(response){
+      SellingService.sellings().query().$promise.then(function(response){
         $scope.sellings = response;
       });
     };
+
     $scope.getSelling = function(selling) {
       if (selling === undefined) { return; }
-      $scope.currentSelling = ApiService.sellings().get({selling: selling.id});
+      $scope.currentSelling = SellingService.sellings().get({selling: selling.id});
     };
+
     $scope.addSelling = function() {
-      $scope.sellings.push(ApiService.new().selling());
+      $scope.sellings.push(SellingService.build());
     };
+
     $scope.saveSelling = function(selling) {
-      ApiService.sellings().save({code: selling.code, sum: selling.sum})
+      SellingService.sellings().save({code: selling.code, sum: selling.sum})
         .$promise.then(function() {
           selling.new = undefined;
           $scope.getSellings();

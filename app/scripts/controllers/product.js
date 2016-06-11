@@ -8,23 +8,25 @@
  * Controller of the zelloApp
  */
 angular.module('zelloApp')
-  .controller('ProductCtrl', function ($scope, ApiService) {
+  .controller('ProductCtrl', function ($scope, ProductService) {
     $scope.products = [];
 
-    $scope.getTotal = function() {
+    $scope.getTotal = function(data) {
+      console.log(data);
         var total = 0;
-        for(var i = 0; i < $scope.products.length; i++){
-            var product = $scope.products[i];
-            total += product.sum;
+        for(var i = 0; i < data.length; i++){
+            var product = data[i];
+            total += product.price * product.quantity;
         }
         return total;
     };
 
     $scope.addProduct = function(selling) {
-      selling.products.push(ApiService.new().product());
+      selling.products.push(ProductService.build());
     };
+
     $scope.saveProduct = function(product) {
-      ApiService.products().save({
+      ProductService.products().save({
         selling_id: $scope.currentSelling.id,
         name: product.name,
         quantity: product.quantity,
@@ -34,8 +36,9 @@ angular.module('zelloApp')
         product.new = undefined;
       });
     };
+
     $scope.removeProduct = function(product) {
-      var result = ApiService.products().delete({product: product.id});
+      var result = ProductService.products().delete({product: product.id});
       result.$promise.then(function(){
         $scope.getSelling($scope.currentSelling);
       });

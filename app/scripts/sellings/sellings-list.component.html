@@ -1,0 +1,43 @@
+<h1>
+  Sellings
+  <button type="button" class="btn btn-primary" ng-click="model.addSelling()">Add selling</button>
+</h1>
+
+<table class="table table-bordered table-condensed table-striped table-hover" ng-if="model.sellings.length">
+    <thead>
+      <tr>
+        <th class="span8">ID</th>
+        <th class="span1">Date</th>
+        <th class="span1">Code</th>
+        <th class="span2">Sum</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="selling in model.sellings">
+        <td>{{selling.id}}</td>
+        <td>{{selling.date | date:'dd/MM/yyyy'}}</td>
+        <td><input type="text" ng-model="selling.code"></td>
+        <td ng-bind="selling.sum | currency"></td>
+        <td>
+          <!-- Button trigger modal -->
+          <a class="btn btn-primary btn-xs"
+            ng-hide="selling.new"
+            ng-link="['Selling', {id: selling.id}]">
+            <span class="glyphicon glyphicon-info-sign"></span>
+          </a>
+          <button type="button"
+            class="btn btn-success btn-xs"
+            ng-click="model.saveSelling(selling)"
+            ng-show="selling.new">
+            <span class="glyphicon glyphicon-ok"></span>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">Total:</td>
+        <td>{{ model.total | currency }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+</table>
