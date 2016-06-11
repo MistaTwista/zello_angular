@@ -1,4 +1,5 @@
-'use strict';
+(function(){
+  'use strict';
 
 /**
  * @ngdoc overview
@@ -29,12 +30,14 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      // .when('/sellings', {
-      //   templateUrl: 'views/sellings.html',
-      //   controller: 'SellingsCtrl',
-      //   controllerAs: 'sellings'
-      // })
+      .when('/sellings', {
+        templateUrl: 'views/sellings.html',
+        controller: 'SellingsCtrl',
+        controllerAs: 'sellings'
+      })
       .otherwise({
         redirectTo: '/'
       });
   });
+
+}())

@@ -1,0 +1,28 @@
+<p>This is the sellings view.</p>
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead>
+      <tr>
+        <th class="span8">ID</th>
+        <th class="span1">Date</th>
+        <th class="span1">Code</th>
+        <th class="span2">Sum</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="task in awesomeThings">
+        <td>{{task.id}}</td>
+        <td>{{task.date}}</td>
+        <td>{{task.code}}</td>
+        <td>{{task.sum | currency}}</td>
+      </tr>
+      <tr>
+        <td colspan="3">Total:</td>
+        <td>{{ getTotal() | currency }}</td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <button type="button" class="btn btn-primary">Add selling</button>
+        </td>
+      </tr>
+    </tbody>
+</table>
