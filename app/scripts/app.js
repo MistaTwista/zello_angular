@@ -18,6 +18,6 @@
       'ngTouch',
     ]);
 
-  app.value('$routerRootComponent', 'app')
+  app.value('$routerRootComponent', 'app');
 
 }());

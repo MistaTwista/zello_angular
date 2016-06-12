@@ -17,7 +17,7 @@
         model.sellings = sellings;
         model.total = model.getTotal();
       });
-    }
+    };
 
     model.getTotal = function() {
       var total = 0;
@@ -58,4 +58,4 @@
     controller: ['$http', 'SellingService', controller]
   });
 
-}())
+}());

@@ -19,22 +19,22 @@
         model.products = model.selling.products;
         model.total = model.getTotal(model.selling.products);
       });
-    }
+    };
 
     model.updateRecord = function() {
       fetchSelling($http, model.selling.id).then(function(selling){
         model.selling = selling;
         model.total = model.getTotal(model.selling.products);
       });
-    }
+    };
 
     model.$onInit = function() {
 
-    }
+    };
 
     model.goBack = function() {
       model.$router.navigate(['Sellings']);
-    }
+    };
 
     model.getTotal = function(data) {
         var total = 0;
@@ -78,4 +78,4 @@
     }
   });
 
-}())
+}());

@@ -16,7 +16,7 @@
       fetchSellings($http).then(function(sellings){
         model.sellings = sellings;
       });
-    }
+    };
 
     model.getTotal = function() {
       var total = 0;
@@ -58,4 +58,4 @@
     controller: ['$http', 'SellingService', controller]
   });
 
-}())
+}());
