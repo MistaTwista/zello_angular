@@ -9,14 +9,9 @@
  */
 angular.module('zelloApp')
   .factory('SellingService', function ($resource) {
-    var selectedSelling;
 
     function sellings() {
-      return $resource('http://localhost:3000/sellings/:selling', {selling: '@selling'});
-    }
-
-    function getSelectedSelling() {
-      return selectedSelling;
+      return $resource('http://127.0.0.1:6543/sellings/:selling', {selling: '@selling'});
     }
 
     function newSelling() {

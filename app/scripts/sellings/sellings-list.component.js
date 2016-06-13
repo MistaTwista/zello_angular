@@ -2,21 +2,11 @@
   'use strict';
   var module = angular.module('zelloApp');
 
-  function fetchSellings($http) {
-    return $http.get('http://localhost:3000/sellings')
-      .then(function(response) {
-        return response.data;
-      });
-  }
-
   function controller($http, SellingService) {
     var model = this;
 
     model.$onInit = function() {
-      fetchSellings($http).then(function(sellings){
-        model.sellings = sellings;
-        model.total = model.getTotal();
-      });
+      model.getSellings();
     };
 
     model.getTotal = function() {
@@ -34,11 +24,6 @@
       });
     };
 
-    model.getSelling = function(selling) {
-      if (selling === undefined) { return; }
-      model.currentSelling = SellingService.sellings().get({selling: selling.id});
-    };
-
     model.addSelling = function() {
       model.sellings.push(SellingService.build());
     };
@@ -47,7 +32,7 @@
       SellingService.sellings().save({code: selling.code, sum: selling.sum})
         .$promise.then(function() {
           selling.new = undefined;
-          model.getSellings();
+//          model.getSellings();
         });
     };
   }

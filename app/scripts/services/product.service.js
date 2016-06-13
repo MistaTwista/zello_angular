@@ -8,7 +8,7 @@
  * Factory in the zelloApp.
  */
 angular.module('zelloApp')
-  .factory('ProductService', function ($resource, SellingService) {
+  .factory('ProductService', function ($resource) {
     function products() {
       return $resource('http://localhost:3000/products/:product', {product: '@product'});
     }

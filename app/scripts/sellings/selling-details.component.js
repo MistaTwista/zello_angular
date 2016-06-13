@@ -2,34 +2,46 @@
   'use strict';
   var module = angular.module('zelloApp');
 
-  function fetchSelling($http, id) {
-    return $http.get('http://localhost:3000/sellings/' + id)
-      .then(function(response) {
-        return response.data;
-      });
-  }
+//  function fetchSelling($http, id) {
+//    return $http.get('http://127.0.0.1:6543/sellings/' + id)
+//      .then(function(response) {
+//        console.log(response);
+//        return response.data.selling;
+//      });
+//  }
 
-  function controller($http, ProductService) {
+  function controller($http, SellingService, ProductService) {
     var model = this;
 
     model.$routerOnActivate = function(next) {
       model.id = next.params.id;
-      fetchSelling($http, next.params.id).then(function(selling){
-        model.selling = selling;
-        model.products = model.selling.products;
-        model.total = model.getTotal(model.selling.products);
-      });
+      model.getSelling(model.id);
+//      fetchSelling($http, next.params.id).then(function(selling){
+//        model.selling = selling;
+//        model.products = model.selling.products;
+//        model.total = model.getTotal(model.selling.products);
+//      });
     };
 
     model.updateRecord = function() {
-      fetchSelling($http, model.selling.id).then(function(selling){
-        model.selling = selling;
-        model.total = model.getTotal(model.selling.products);
-      });
+//      fetchSelling($http, model.selling.id).then(function(selling){
+//        model.selling = selling;
+//        model.total = model.getTotal(model.selling.products);
+//      });
     };
 
     model.$onInit = function() {
 
+    };
+    
+    model.getSelling = function(id) {
+      if (id === undefined) { return; }
+      SellingService.sellings().get({selling: id})
+        .$promise.then(function(response){
+          model.selling = response.selling;
+          model.products = model.selling.products;
+          model.total = model.getTotal(model.selling.products);
+      });
     };
 
     model.goBack = function() {
@@ -72,7 +84,7 @@
   module.component('sellingDetails', {
     templateUrl: '/scripts/sellings/selling-details.component.html',
     controllerAs: 'model',
-    controller: ['$http', 'ProductService', controller],
+    controller: ['$http', 'SellingService', 'ProductService', controller],
     bindings: {
       '$router': '<'
     }
