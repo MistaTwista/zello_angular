@@ -2,32 +2,16 @@
   'use strict';
   var module = angular.module('zelloApp');
 
-//  function fetchSelling($http, id) {
-//    return $http.get('http://127.0.0.1:6543/sellings/' + id)
-//      .then(function(response) {
-//        console.log(response);
-//        return response.data.selling;
-//      });
-//  }
-
   function controller($http, SellingService, ProductService) {
     var model = this;
 
     model.$routerOnActivate = function(next) {
       model.id = next.params.id;
       model.getSelling(model.id);
-//      fetchSelling($http, next.params.id).then(function(selling){
-//        model.selling = selling;
-//        model.products = model.selling.products;
-//        model.total = model.getTotal(model.selling.products);
-//      });
     };
 
     model.updateRecord = function() {
-//      fetchSelling($http, model.selling.id).then(function(selling){
-//        model.selling = selling;
-//        model.total = model.getTotal(model.selling.products);
-//      });
+      
     };
 
     model.$onInit = function() {
