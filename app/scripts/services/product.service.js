@@ -9,8 +9,9 @@
  */
 angular.module('zelloApp')
   .factory('ProductService', function ($resource) {
+
     function products() {
-      return $resource('http://localhost:3000/products/:product', {product: '@product'});
+      return $resource('http://127.0.0.1:6543/products/:product', {product: '@product'});
     }
 
     function newProduct() {
