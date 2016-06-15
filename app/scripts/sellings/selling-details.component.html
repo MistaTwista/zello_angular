@@ -20,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="product in model.products">
+        <tr ng-repeat="product in model.selling.products">
           <td>{{product.id}}</td>
           <td ng-show="product.new"><input type="text" ng-model="product.name"></td>
           <td ng-show="product.new"><input type="number" ng-model="product.quantity"></td>

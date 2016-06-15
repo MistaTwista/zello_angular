@@ -9,21 +9,12 @@
       model.id = next.params.id;
       model.getSelling(model.id);
     };
-
-    model.updateRecord = function() {
-      
-    };
-
-    model.$onInit = function() {
-
-    };
     
     model.getSelling = function(id) {
       if (id === undefined) { return; }
       SellingService.sellings().get({selling: id})
         .$promise.then(function(response){
           model.selling = response.selling;
-          model.products = model.selling.products;
           model.total = model.getTotal(model.selling.products);
       });
     };
@@ -42,28 +33,26 @@
     };
 
     model.addProduct = function() {
-      model.products.push(ProductService.build());
+      model.selling.products.push(ProductService.build());
     };
 
     model.saveProduct = function(product) {
-      ProductService.products().save({
+      SellingService.sellings().addProduct({
         // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-        selling_id: model.selling.id,
+        selling_id: model.id,
         // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
         name: product.name,
         quantity: product.quantity,
         price: product.price
-      }).$promise.then(function(){
-        model.updateRecord();
+      }).$promise.then(function(response){
+        model.selling = response.selling;
         product.new = undefined;
       });
     };
 
     model.removeProduct = function(product) {
       var result = ProductService.products().delete({product: product.id});
-      result.$promise.then(function(){
-        model.updateRecord();
-      });
+      result.$promise.then(function(){});
     };
   }
 
