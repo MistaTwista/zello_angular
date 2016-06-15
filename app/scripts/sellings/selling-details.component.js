@@ -2,7 +2,7 @@
   'use strict';
   var module = angular.module('zelloApp');
 
-  function controller($http, SellingService, ProductService) {
+  function controller(SellingService, ProductService) {
     var model = this;
 
     model.$routerOnActivate = function(next) {
@@ -47,7 +47,9 @@
 
     model.saveProduct = function(product) {
       ProductService.products().save({
+        // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
         selling_id: model.selling.id,
+        // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
         name: product.name,
         quantity: product.quantity,
         price: product.price
@@ -68,7 +70,7 @@
   module.component('sellingDetails', {
     templateUrl: '/scripts/sellings/selling-details.component.html',
     controllerAs: 'model',
-    controller: ['$http', 'SellingService', 'ProductService', controller],
+    controller: ['SellingService', 'ProductService', controller],
     bindings: {
       '$router': '<'
     }

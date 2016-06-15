@@ -11,7 +11,7 @@
     "angular-component-router": "^0.2.1",
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
-    "Chart.js": "^2.1.4"
+    "Chart.js": "^2.1.6"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

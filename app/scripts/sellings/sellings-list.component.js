@@ -2,7 +2,7 @@
   'use strict';
   var module = angular.module('zelloApp');
 
-  function controller($http, SellingService) {
+  function controller(SellingService) {
     var model = this;
 
     model.$onInit = function() {
@@ -40,7 +40,7 @@
   module.component('sellingsList', {
     templateUrl: '/scripts/sellings/sellings-list.component.html',
     controllerAs: 'model',
-    controller: ['$http', 'SellingService', controller]
+    controller: ['SellingService', controller]
   });
 
 }());
