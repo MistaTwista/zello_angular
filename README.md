@@ -7,6 +7,7 @@ version 0.15.1.
 
 npm install -g grunt-cli bower yo generator-karma generator-angular
 npm install
+bower install
 grunt serve
 
 ## Build & development
