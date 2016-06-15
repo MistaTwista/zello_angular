@@ -11,14 +11,28 @@ angular.module('zelloApp')
   .factory('SellingService', function ($resource) {
 
     function sellings() {
-      return $resource('http://127.0.0.1:6543/sellings/:selling', {selling: '@selling'});
+      return $resource('http://127.0.0.1:6543/sellings/:selling', {selling: '@selling'}, {
+        save: {
+          method: "POST",
+          data: false,
+          isArray: true,
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          transformRequest: function(obj) {
+              var str = [];
+              for(var p in obj) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+              }
+              return str.join("&");
+          },
+        }
+      });
     }
 
     function newSelling() {
       return {
-        date: Date.now(),
+        date: new Date(),
         code: '',
-        sum: 0,
+        summ: 0,
         new: true
       };
     }

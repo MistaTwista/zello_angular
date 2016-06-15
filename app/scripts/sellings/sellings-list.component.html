@@ -9,7 +9,7 @@
         <th class="span8">ID</th>
         <th class="span1">Date</th>
         <th class="span1">Code</th>
-        <th class="span2">Sum</th>
+        <th class="span2">Summ</th>
         <th></th>
       </tr>
     </thead>
@@ -19,7 +19,7 @@
         <td>{{selling.date | date:'dd/MM/yyyy'}}</td>
         <td ng-show="selling.new"><input type="text" ng-model="selling.code"></td>
         <td ng-hide="selling.new">{{selling.code}}</td>
-        <td ng-bind="selling.sum | currency"></td>
+        <td ng-bind="selling.summ | currency"></td>
         <td>
           <!-- Button trigger modal -->
           <a class="btn btn-primary btn-xs"

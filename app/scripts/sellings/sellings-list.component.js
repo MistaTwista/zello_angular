@@ -13,7 +13,7 @@
       var total = 0;
       for(var i = 0; i < model.sellings.length; i++){
           var product = model.sellings[i];
-          total += product.sum;
+          total += product.summ;
       }
       return total;
     };
@@ -29,13 +29,15 @@
     };
 
     model.saveSelling = function(selling) {
-      SellingService.sellings().save({code: selling.code, sum: selling.sum})
-        .$promise.then(function() {
+      SellingService.sellings().save({
+        code: selling.code
+      }).$promise.then(function(response) {
           selling.new = undefined;
-//          model.getSellings();
+          model.sellings = response;
         });
     };
   }
+  
 
   module.component('sellingsList', {
     templateUrl: '/scripts/sellings/sellings-list.component.html',

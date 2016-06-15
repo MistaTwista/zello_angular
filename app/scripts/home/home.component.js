@@ -9,7 +9,7 @@
       var total = 0;
       for(var i = 0; i < model.sellings.length; i++){
           var product = model.sellings[i];
-          total += product.sum;
+          total += product.summ;
       }
       return total;
     };
