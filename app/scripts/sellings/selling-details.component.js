@@ -15,8 +15,12 @@
       SellingService.sellings().get({selling: id})
         .$promise.then(function(response){
           model.selling = response.selling;
-          model.total = model.getTotal(model.selling.products);
+          model.updateTotal();
       });
+    };
+    
+    model.updateTotal = function() {
+      model.total = model.getTotal(model.selling.products);
     };
 
     model.goBack = function() {
@@ -46,6 +50,7 @@
         price: product.price
       }).$promise.then(function(response){
         model.selling = response.selling;
+        model.updateTotal();
         product.new = undefined;
       });
     };
