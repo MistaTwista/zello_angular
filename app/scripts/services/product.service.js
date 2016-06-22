@@ -11,7 +11,23 @@ angular.module('zelloApp')
   .factory('ProductService', function ($resource) {
 
     function products() {
-      return $resource('http://127.0.0.1:6543/sellings/:product', {product: '@product'});
+      return $resource('http://127.0.0.1:6543/products/:product', {product: '@product_id'}, {
+        addProduct: {
+          method: 'POST',
+          data: false,
+          isArray: false,
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          transformRequest: codeObjectToPOST,
+        }
+      });
+    }
+  
+    function codeObjectToPOST(obj) {
+      var str = [];
+      for(var p in obj) {
+        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+      }
+      return str.join('&');
     }
 
     function newProduct() {

@@ -12,14 +12,8 @@ angular.module('zelloApp')
 
     function sellings() {
       return $resource('http://127.0.0.1:6543/sellings/:selling', {selling: '@selling_id'}, {
-        addProduct: {
-          method: "POST",
-          data: false,
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          transformRequest: codeObjectToPOST,
-        },
         save: {
-          method: "POST",
+          method: 'POST',
           data: false,
           isArray: true,
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},

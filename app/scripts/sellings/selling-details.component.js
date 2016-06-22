@@ -41,7 +41,7 @@
     };
 
     model.saveProduct = function(product) {
-      SellingService.sellings().addProduct({
+      ProductService.products().addProduct({
         // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
         selling_id: model.id,
         // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
@@ -49,6 +49,7 @@
         quantity: product.quantity,
         price: product.price
       }).$promise.then(function(response){
+        console.log(response);
         model.selling = response.selling;
         model.updateTotal();
         product.new = undefined;
